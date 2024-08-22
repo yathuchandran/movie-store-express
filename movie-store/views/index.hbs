@@ -1,0 +1,29 @@
+<h1>Welcome to the Movie Store</h1>
+
+{{#if movies.length}}
+  <h2>Available Movies</h2>
+  <ul>
+    {{#each movies}}
+      <li>
+        <h3>{{this.title}}</h3>
+        <p><strong>Genre:</strong> {{this.genre.name}}</p>
+        <p><strong>Director:</strong> {{this.director.name}}</p>
+        <p><strong>Actors:</strong> 
+          {{#each this.actors}}
+            {{this.name}}{{#unless @last}}, {{/unless}}
+          {{/each}}
+        </p>
+        <p><strong>Release Date:</strong> {{this.releaseDate}}</p>
+        <p>{{this.description}}</p>
+      </li>
+    {{/each}}
+  </ul>
+{{else}}
+  <p>No movies available at the moment. Please check back later!</p>
+{{/if}}
+
+{{#if user}}
+  <p><a href="/users/add">Add a New Movie</a></p>
+{{else}}
+  <p><a href="/users/login">Log in</a> to add a new movie.</p>
+{{/if}}
